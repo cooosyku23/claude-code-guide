@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## このリポジトリの性格
 
-Claude Code の各機能（並列開発・自動化・Agent Teams など）を**日本語で解説するドキュメント集**。ソフトウェアプロジェクトではないため、ビルド・リント・テストのツールチェーンやパッケージマニフェストは存在しない。成果物は Markdown ガイドそのもので、ここでの「作業」はほぼ Markdown の執筆・編集・相互参照の保守を指す。
+Claude Code の各機能（並列開発・自動化・Agent Teams など）やモデルのプロンプティングを**日本語で解説するドキュメント集**。ソフトウェアプロジェクトではないため、ビルド・リント・テストのツールチェーンやパッケージマニフェストは存在しない。成果物は Markdown ガイドそのもので、ここでの「作業」はほぼ Markdown の執筆・編集・相互参照の保守を指す。
 
 ## 全体構成（トピック別ディレクトリ）
 
-ガイドはトピックごとにディレクトリへ分かれ、各ディレクトリの中心ファイルは `GUIDE.md`。
+ガイドはトピックごとにディレクトリへ分かれ、各ディレクトリの中心ファイルは原則 `GUIDE.md`（`Prompts/` のみテーマ別のファイル名）。
 
 - **`Parallel/GUIDE.md`** — Git worktree で複数 Claude Code セッションを並列に走らせる開発ガイド。`git worktree` を直接扱う流儀が中心で、公式の `claude --worktree` 機能は専用節にまとめてある。冒頭に自己参照の目次（見出しアンカー）を持つ唯一のガイド。
 - **`Automation/`** — `/loop`・Routines・Desktop scheduled tasks・ワークフローループの 3 本セット。**親子関係**になっている（下記）。
@@ -16,6 +16,7 @@ Claude Code の各機能（並列開発・自動化・Agent Teams など）を**
   - `LOOP_GUIDE.md`（補助）— `.claude/loop.md` の書き方を親ガイド §4 から抜き出して深掘りしたもの。
   - `WORKFLOW_LOOP_GUIDE.md`（補助）— `CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューを束ねたワークフローループ全体の設計図。
 - **`Agent_Teams/GUIDE.md`** — Agent Teams（research preview）の利用ガイド。
+- **`Prompts/CLAUDE_FABLE_5.md`** — Claude Fable 5 のプロンプティング解説・日本語訳・実践ガイド。公式ドキュメント「Claude Fable 5 のプロンプティング」の要点と日本語訳に、同ガイド独自の付録（移行チェックリスト、Claude Code への適用レシピ）を加えたもの。
 - **`.claude/commands/agent-team.md`** — `/agent-team` スラッシュコマンドの実体（下記のメタプロンプト）。
 - **`.claude/examples/`** — `/agent-team` が参照する出力例ライブラリ。
 
