@@ -1,6 +1,6 @@
 # Claude Code `.claude/loop.md` 記述ガイド
 
-`references/Automation/GUIDE.md` §4 で触れた `.claude/loop.md` の書き方を、独立した実務ガイドとして掘り下げたものです。`loop.md` は、引数なしの `/loop`（bare `/loop`）が実行する組み込みの maintenance prompt を、自分の指示で置き換えるためのファイルです。2026年6月8日時点の Anthropic 公式ドキュメントを照合して記述します。挙動・制限は変更される可能性があるため、時間に依存する事実には照合日を併記します。
+`Automation/GUIDE.md` §4 で触れた `.claude/loop.md` の書き方を、独立した実務ガイドとして掘り下げたものです。`loop.md` は、引数なしの `/loop`（bare `/loop`）が実行する組み込みの maintenance prompt を、自分の指示で置き換えるためのファイルです。2026年6月8日時点の Anthropic 公式ドキュメントを照合して記述します。挙動・制限は変更される可能性があるため、時間に依存する事実には照合日を併記します。
 
 主な一次情報:
 
@@ -128,7 +128,7 @@ quiet, say so in one line.
 
 第三に、静観条件を1行で言わせることです。毎イテレーションで長文を吐かせず「すべて green、やることなし」の1行で終わらせると、回しっぱなしでも邪魔になりません。
 
-終了条件の設計をさらに厳密にしたい場合は、時間間隔で繰り返す `/loop` ではなく、検証可能な完了条件で終わる `/goal` も検討します（詳細は `references/Automation/GUIDE.md` §4「`/goal` で検証可能な終了条件まで継続する」）。
+終了条件の設計をさらに厳密にしたい場合は、時間間隔で繰り返す `/loop` ではなく、検証可能な完了条件で終わる `/goal` も検討します（詳細は `Automation/GUIDE.md` §4「`/goal` で検証可能な終了条件まで継続する」）。
 
 ---
 
@@ -142,7 +142,7 @@ Amazon Bedrock / Google Vertex AI / Microsoft Foundry 経由で利用してい�
 
 ### session-scoped と7日期限
 
-`/loop` のタスクは session-scoped で、現在の会話に紐づき、新しい会話を始めると消えます。`--resume` / `--continue` では、期限切れでないタスクだけが復元されます。固定間隔の recurring task は作成から7日で期限切れになり、最後に1回実行してから自己削除されます。`loop.md` で定義した既定プロンプトを恒久的に走らせたい用途には向かず、その場合は Routines や Desktop scheduled tasks を使います（`references/Automation/GUIDE.md` §1・§2 を参照）。
+`/loop` のタスクは session-scoped で、現在の会話に紐づき、新しい会話を始めると消えます。`--resume` / `--continue` では、期限切れでないタスクだけが復元されます。固定間隔の recurring task は作成から7日で期限切れになり、最後に1回実行してから自己削除されます。`loop.md` で定義した既定プロンプトを恒久的に走らせたい用途には向かず、その場合は Routines や Desktop scheduled tasks を使います（`Automation/GUIDE.md` §1・§2 を参照）。
 
 ### 停止方法
 
@@ -150,6 +150,6 @@ Amazon Bedrock / Google Vertex AI / Microsoft Foundry 経由で利用してい�
 
 ---
 
-## 8. `references/Automation/GUIDE.md` との関係
+## 8. `Automation/GUIDE.md` との関係
 
-本ガイドは、`references/Automation/GUIDE.md` §4「`/loop`・Skills・`/goal` でローカル自律ループを作る」のうち、`.claude/loop.md` の記述方法だけを抜き出して深掘りした補助ガイドです。`/loop` 全体の位置づけ（Routines / Desktop scheduled tasks との使い分け）、`/goal` による終了条件の強制、Skills による反復手順のパッケージ化、実務運用の罠は `GUIDE.md` 本体を参照してください。ワークフローループ全体（`CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビュー）の設計の見取り図は、もう1本の補助ガイド `references/Automation/WORKFLOW_LOOP_GUIDE.md` を参照してください。
+本ガイドは、`Automation/GUIDE.md` §4「`/loop`・Skills・`/goal` でローカル自律ループを作る」のうち、`.claude/loop.md` の記述方法だけを抜き出して深掘りした補助ガイドです。`/loop` 全体の位置づけ（Routines / Desktop scheduled tasks との使い分け）、`/goal` による終了条件の強制、Skills による反復手順のパッケージ化、実務運用の罠は `GUIDE.md` 本体を参照してください。ワークフローループ全体（`CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビュー）の設計の見取り図は、もう1本の補助ガイド `Automation/WORKFLOW_LOOP_GUIDE.md` を参照してください。

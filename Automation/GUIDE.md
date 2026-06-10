@@ -207,7 +207,7 @@ prompt だけを渡すと、Claude が各 iteration の間隔を選ぶ場合が�
 
 bare `/loop` は組み込みの maintenance prompt を実行します。project-level の default prompt を定義したい場合は `.claude/loop.md`、user-level なら `~/.claude/loop.md` を使います。`.claude/loop.md` は bare `/loop` の default prompt を置き換えるもので、複数タスクの一覧ではありません。
 
-`.claude/loop.md` の詳しい書き方（配置場所と優先順位・frontmatter 不要のプレーン Markdown・具体例・ハマりどころ）は、補助ガイド `references/Automation/LOOP_GUIDE.md` にまとめています。ワークフローループ全体の設計（`CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューの組み合わせ）の見取り図は、補助ガイド `references/Automation/WORKFLOW_LOOP_GUIDE.md` にまとめています。
+`.claude/loop.md` の詳しい書き方（配置場所と優先順位・frontmatter 不要のプレーン Markdown・具体例・ハマりどころ）は、補助ガイド `Automation/LOOP_GUIDE.md` にまとめています。ワークフローループ全体の設計（`CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューの組み合わせ）の見取り図は、補助ガイド `Automation/WORKFLOW_LOOP_GUIDE.md` にまとめています。
 
 注: Amazon Bedrock / Google Vertex AI / Microsoft Foundry 経由で利用している場合、`/loop` の挙動が異なります。interval を省略した `/loop` は動的間隔ではなく固定10分間隔で実行され、引数なしの bare `/loop` は maintenance prompt を実行せず使用法表示のみになります。
 

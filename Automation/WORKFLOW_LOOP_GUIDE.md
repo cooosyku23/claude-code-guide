@@ -1,6 +1,6 @@
 # Claude Code ワークフローループ設計ガイド
 
-Claude Codeで、単発プロンプトではなく、**エージェントが継続的に作業・検証・修正・レビューを回すワークフローループ** をどう設計するかを整理します。本ガイドは `references/Automation/GUIDE.md` の補助ガイドで、`GUIDE.md §4`（`/loop`・Skills・`/goal`）と `LOOP_GUIDE.md`（`.claude/loop.md` の書き方）を、ワークフローループ全体の設計という観点から束ねます。
+Claude Codeで、単発プロンプトではなく、**エージェントが継続的に作業・検証・修正・レビューを回すワークフローループ** をどう設計するかを整理します。本ガイドは `Automation/GUIDE.md` の補助ガイドで、`GUIDE.md §4`（`/loop`・Skills・`/goal`）と `LOOP_GUIDE.md`（`.claude/loop.md` の書き方）を、ワークフローループ全体の設計という観点から束ねます。
 
 本ガイドの技術的事実は 2026-06-09 に Claude Code 公式ドキュメントと照合しています。挙動・制限は変更されうるため、時間に依存する事実には照合日を併記します。
 
@@ -16,7 +16,7 @@ Claude Codeで、単発プロンプトではなく、**エージェントが継�
 - [Hooks reference](https://code.claude.com/docs/en/hooks)
 - [Settings](https://code.claude.com/docs/en/settings)
 
-関連ガイド: `/loop`・Routines・Desktop scheduled tasks の使い分けは `references/Automation/GUIDE.md`、`.claude/loop.md` の詳しい書き方は `references/Automation/LOOP_GUIDE.md` を参照してください。
+関連ガイド: `/loop`・Routines・Desktop scheduled tasks の使い分けは `Automation/GUIDE.md`、`.claude/loop.md` の詳しい書き方は `Automation/LOOP_GUIDE.md` を参照してください。
 
 ---
 
