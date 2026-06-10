@@ -70,8 +70,8 @@ one playing devil's advocate.
 | **tools** | ✅ 基本制約として適用 | 定義の `tools` 制限がベースとして適用され、チーム機能（SendMessage 等）が自動追加される |
 | **システムプロンプト（定義本文）** | ✅ 適用される | 定義ファイルの本文が、専門化された指示としてチームメイトのシステムプロンプトへ追記される（置換ではなく追記） |
 | **model** | ✅ 適用される | 定義の `model` 指定（sonnet・haiku 等）がチームメイトに反映される。プロンプトでもモデル未指定のときの既定は `/config` の「Default teammate model」設定で決まる（公式ドキュメント「Use subagent definitions for teammates」記載、2026年5月22日時点） |
-| **skills（frontmatter）** | 📖 honor されない | サブエージェント定義 frontmatter の `skills:` 列挙は teammate 化時に honor されない。teammate はプロジェクト・ユーザー設定からスキルを読み込む（公式 Agent Teams ドキュメント「Use subagent definitions for teammates」、2026年5月24日時点）。次節「自動的に読み込まれるプロジェクトコンテキスト」を参照 |
-| **mcpServers（frontmatter）** | 📖 honor されない | サブエージェント定義 frontmatter の `mcpServers:` も同様に honor されない。teammate はプロジェクト・ユーザー設定の MCP server を、通常セッションと同じく読み込む（同上） |
+| **skills（frontmatter）** | 📖 honor されない | サブエージェント定義 frontmatter の `skills:` 列挙はチームメイト化時に honor されない。チームメイトはプロジェクト・ユーザー設定からスキルを読み込む（公式 Agent Teams ドキュメント「Use subagent definitions for teammates」、2026年5月24日時点）。次節「自動的に読み込まれるプロジェクトコンテキスト」を参照 |
+| **mcpServers（frontmatter）** | 📖 honor されない | サブエージェント定義 frontmatter の `mcpServers:` も同様に honor されない。チームメイトはプロジェクト・ユーザー設定の MCP server を、通常セッションと同じく読み込む（同上） |
 | **Task ツール** | ❌ 付与されない | チームメイトはさらにサブエージェントを委任（Task tool）できない |
 
 つまり、サブエージェントの**専門性（プロンプト・ツール制限・モデル選択）**はチームメイトに引き継がれるが、**サブエージェント委任（Task ツール）は引き継がれない**。
@@ -131,7 +131,7 @@ Coordinate through the shared task list.
 
 ### 自動的に読み込まれるプロジェクトコンテキスト
 
-公式ドキュメントには、チームメイトが生成されるとプロジェクトコンテキストを自動的に読み込むことが明記されています。ここでの「スキル」「MCP」は **プロジェクト・ユーザー設定** から読み込まれるもの（`.claude/skills/` 配下のスキルや、リーダーが接続している MCP サーバーなど、通常セッションと同じソース）を指します。サブエージェント定義 frontmatter の `skills:` / `mcpServers:` 列挙は teammate 化時には honor されません（前節の反映表を参照）。
+公式ドキュメントには、チームメイトが生成されるとプロジェクトコンテキストを自動的に読み込むことが明記されています。ここでの「スキル」「MCP」は **プロジェクト・ユーザー設定** から読み込まれるもの（`.claude/skills/` 配下のスキルや、リーダーが接続している MCP サーバーなど、通常セッションと同じソース）を指します。サブエージェント定義 frontmatter の `skills:` / `mcpServers:` 列挙はチームメイト化時には honor されません（前節の反映表を参照）。
 
 - 📖 **CLAUDE.md**: チームメイトは作業ディレクトリの CLAUDE.md ファイルを読み込みます。プロジェクト固有のガイダンスをすべてのチームメイトに提供するために活用できます。
 - 📖 **MCP サーバー**: リーダーと同じ MCP 接続が利用可能です。データベースや外部サービスへの接続がチームメイトからも使えます。
@@ -198,8 +198,8 @@ Coordinate through the shared task list.
 ### 想定外の動作が発生した場合
 
 **対処法**:
-- 📖 セッションの会話 transcript は `~/.claude/projects/<project>/<session>.jsonl` に記録される。サブエージェント（および Agent Teams のチームメイト相当）の transcript は `~/.claude/projects/<project>/<session>/subagents/` 配下に置かれる。debug log は `~/.claude/debug/` 配下で、`--debug` 起動時または `/debug` 実行時のみ書かれる（公式 [.claude directory ドキュメント](https://code.claude.com/docs/en/claude-directory) 2026年5月24日時点）
-- ⚠️ チームメイトごとの transcript を確認して、どの時点で想定外の動作が始まったかを特定する
+- 📖 セッションの会話トランスクリプトは `~/.claude/projects/<project>/<session>.jsonl` に記録される。サブエージェント（および Agent Teams のチームメイト相当）のトランスクリプトは `~/.claude/projects/<project>/<session>/subagents/` 配下に置かれる。debug log は `~/.claude/debug/` 配下で、`--debug` 起動時または `/debug` 実行時のみ書かれる（公式 [.claude directory ドキュメント](https://code.claude.com/docs/en/claude-directory) 2026年5月24日時点）
+- ⚠️ チームメイトごとのトランスクリプトを確認して、どの時点で想定外の動作が始まったかを特定する
 - ⚠️ `git status` と `git diff` で変更されたファイルの一覧と差分を確認し、意図しない変更を revert する
 - 📖 CLAUDE.md にガードレールを追加する（例: 「src/ ディレクトリ以外のファイルを変更しないこと」）。チームメイトは CLAUDE.md を読み込むため、次回以降の実行で制約が適用される
 

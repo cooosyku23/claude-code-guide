@@ -34,7 +34,7 @@
 
 ### このガイドで学べること
 
-- Git worktree（1つのリポジトリから複数の作業フォルダを作る機能）の概念と基本操作
+- Git worktree（1つのリポジトリから複数の作業ディレクトリを作る機能）の概念と基本操作
 - 並列化のメリット・デメリットと判断基準
 - 競合（同じファイルを同時編集して起きる問題）を防ぐ設計
 - Claudeへの効果的な指示の出し方
@@ -132,7 +132,7 @@ git commit -m "Initial commit"
   （worktree作成・環境初期化に5〜10分かかるため、
    それより短いタスクでは並列化のメリットが薄い）
 □ ビルドやテストの待ち時間が発生する
-□ 別々のフォルダ（frontend / backend など）を触る独立したタスク
+□ 別々のディレクトリ（frontend / backend など）を触る独立したタスク
 □ PRレビュー待ちで手が空く
 ```
 
@@ -209,19 +209,19 @@ worktree は素のチェックアウトなので、メインリポジトリの `
 config/secrets.json
 ```
 
-これは `claude --worktree` で作る worktree、subagent worktree、Desktop アプリの並列セッションすべてに適用されます。
+これは `claude --worktree` で作る worktree、サブエージェント worktree、Desktop アプリの並列セッションすべてに適用されます。
 
 ### Desktop アプリは新セッション毎に自動で worktree を作る
 
 Claude Code Desktop アプリは新しい並列セッションを開始するたびに、自動で worktree を作成して隔離します（公式 [Desktop ドキュメント](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions)）。CLI を意識せずに並列セッションを使いたい場合は Desktop の利用を検討してください。
 
-### Subagent も worktree で隔離できる
+### サブエージェントも worktree で隔離できる
 
-カスタムサブエージェント定義の frontmatter に `isolation: worktree` を加えると、その subagent が起動するたびに一時 worktree が割り当てられます。変更を伴わずに終了した場合は自動で削除されます。サブエージェント並列実行時のファイル競合を構造的に避けられます。
+カスタムサブエージェント定義の frontmatter に `isolation: worktree` を加えると、そのサブエージェントが起動するたびに一時 worktree が割り当てられます。変更を伴わずに終了した場合は自動で削除されます。サブエージェント並列実行時のファイル競合を構造的に避けられます。
 
 ### 公式機能を使うときの片付け
 
-`--worktree` で作った worktree は、セッション終了時に変更状態に応じて自動／対話的に片付けられます（変更なしなら自動削除、変更ありなら保持か削除かを質問）。非対話モード（`-p`）で作った worktree は手動で `git worktree remove` する必要があります。subagent worktree は `cleanupPeriodDays` 設定に基づき、未コミット変更も untracked もないものから掃除されます。`--worktree` で作った worktree はこの自動掃除の対象外です。
+`--worktree` で作った worktree は、セッション終了時に変更状態に応じて自動／対話的に片付けられます（変更なしなら自動削除、変更ありなら保持か削除かを質問）。非対話モード（`-p`）で作った worktree は手動で `git worktree remove` する必要があります。サブエージェント worktree は `cleanupPeriodDays` 設定に基づき、未コミット変更も untracked もないものから掃除されます。`--worktree` で作った worktree はこの自動掃除の対象外です。
 
 ### 本ガイド以下の素朴な `git worktree add` 解説の位置づけ
 
@@ -235,7 +235,7 @@ Claude Code Desktop アプリは新しい並列セッションを開始するた
 
 Git worktreeは「同じリポジトリ（Gitで管理されているプロジェクト）を複数の場所で同時に開く」ための仕組みです。
 
-普通にフォルダをコピーすると：
+普通にディレクトリをコピーすると：
 - 容量が2倍、3倍になる
 - Git履歴が別々になり、管理が大変
 
@@ -248,13 +248,13 @@ Git worktreeを使うと：
 
 ```bash
 # 作る
-git worktree add <フォルダ> -b <ブランチ名> main
+git worktree add <ディレクトリ> -b <ブランチ名> main
 
 # 確認する
 git worktree list
 
 # 削除する
-git worktree remove <フォルダ>
+git worktree remove <ディレクトリ>
 ```
 
 ### 実際の操作手順
@@ -262,7 +262,7 @@ git worktree remove <フォルダ>
 #### 1. worktreeを作成する
 
 ```bash
-# プロジェクトのフォルダに移動
+# プロジェクトのディレクトリに移動
 cd ~/my-practice-project
 
 # worktreeを作成（1つ上の階層に作る）
@@ -274,7 +274,7 @@ git worktree add ../my-practice-project-a -b work-a main
 | 部分 | 意味 |
 |------|------|
 | `git worktree add` | 新しいworktreeを作る |
-| `../my-practice-project-a` | 作成先のフォルダ |
+| `../my-practice-project-a` | 作成先のディレクトリ |
 | `-b work-a` | `work-a`という新しいブランチを作る |
 | `main` | `main`ブランチを元にする |
 
@@ -358,7 +358,7 @@ git worktree remove ../my-practice-project-a
 
 ### 競合を防ぐ3原則
 
-#### 原則1：フォルダ単位で担当を分ける
+#### 原則1：ディレクトリ単位で担当を分ける
 
 ```
                  良い分け方
@@ -370,7 +370,7 @@ git worktree remove ../my-practice-project-a
 │  │ を編集   │         │ を編集   │      │
 │  └──────────┘         └──────────┘      │
 │                                         │
-│  → 別々のフォルダなので競合しない       │
+│  → 別々のディレクトリなので競合しない       │
 └─────────────────────────────────────────┘
 
                  悪い分け方
@@ -391,11 +391,11 @@ Claudeに最初に伝えておくと、守ってくれます：
 ```bash
 # feature worktreeで
 claude
-> このworktreeではfrontend/フォルダの作業だけ行います
+> このworktreeではfrontend/ディレクトリの作業だけ行います
 
 # fix worktreeで
 claude
-> このworktreeではbackend/フォルダの作業だけ行います
+> このworktreeではbackend/ディレクトリの作業だけ行います
 ```
 
 #### 原則2：共通ファイルは1箇所でのみ編集する
@@ -485,7 +485,7 @@ git worktree add --detach ../todo-app-watch main
 
 ### 各worktreeの役割
 
-| Worktree | 担当フォルダ | Claudeへの指示 |
+| Worktree | 担当ディレクトリ | Claudeへの指示 |
 |----------|-------------|---------------|
 | todo-app-ui | frontend/ | 「タスク一覧画面を作って」 |
 | todo-app-api | backend/ | 「タスクを保存するAPIを作って」 |
@@ -543,7 +543,7 @@ Claude：（コードを読んで説明してくれる）
 
 ### この例のポイント
 
-1. **フォルダが分かれている** — frontend/ と backend/ で競合しない
+1. **ディレクトリが分かれている** — frontend/ と backend/ で競合しない
 2. **お互いに依存しない** — UIとAPIは独立して開発できる
 3. **観察用がある** — 安全に全体を確認できる場所がある
 
@@ -559,8 +559,8 @@ Claude：（コードを読んで説明してくれる）
 このworktreeでは [機能名] の開発を行います。
 
 作業範囲：
-- [フォルダ名]/ 以下のファイルのみ編集してください
-- 他のフォルダは触らないでください
+- [ディレクトリ名]/ 以下のファイルのみ編集してください
+- 他のディレクトリは触らないでください
 
 目標：
 - [具体的な目標を書く]
@@ -574,7 +574,7 @@ Claude：（コードを読んで説明してくれる）
 
 作業範囲：
 - src/features/auth/ 以下のファイルのみ編集してください
-- 他のフォルダは触らないでください
+- 他のディレクトリは触らないでください
 
 目標：
 - ログイン・ログアウト機能を実装する
@@ -636,7 +636,7 @@ Claude：（コードを読んで説明してくれる）
 - 調査と説明のみ行ってください
 
 調査してほしいこと：
-- src/api/ のフォルダ構造を説明してください
+- src/api/ のディレクトリ構造を説明してください
 - データの流れを図で示してください
 - 改善できそうな箇所があれば教えてください
 ```
@@ -678,7 +678,7 @@ Claude：（コードを読んで説明してくれる）
 ### テンプレート使用のコツ
 
 1. **最初に役割を宣言する** — Claudeが範囲外の作業をしにくくなる
-2. **フォルダを明示する** — 競合防止に効果的
+2. **ディレクトリを明示する** — 競合防止に効果的
 3. **目標を具体的に** — Claudeが的確に動いてくれる
 
 ---
@@ -707,9 +707,9 @@ git worktree add ../my-practice-project-c -b work-c main
 fatal: not a git repository
 ```
 
-**原因：** Gitリポジトリではないフォルダで実行しています。
+**原因：** Gitリポジトリではないディレクトリで実行しています。
 
-**解決策：** プロジェクトのフォルダに移動してから実行してください。
+**解決策：** プロジェクトのディレクトリに移動してから実行してください。
 
 ```bash
 cd ~/my-practice-project
@@ -722,7 +722,7 @@ git worktree add ...
 fatal: '../my-practice-project-a' already exists
 ```
 
-**原因：** そのフォルダが既に存在しています。
+**原因：** そのディレクトリが既に存在しています。
 
 **解決策：**
 
@@ -730,7 +730,7 @@ fatal: '../my-practice-project-a' already exists
 # 方法1：別の名前を使う
 git worktree add ../my-practice-project-a2 -b work-a2 main
 
-# 方法2：既存のフォルダを削除してから再実行
+# 方法2：既存のディレクトリを削除してから再実行
 rm -rf ../my-practice-project-a
 git worktree prune
 git worktree add ../my-practice-project-a -b work-a main
@@ -748,9 +748,9 @@ fatal: cannot remove: Directory not empty
 git worktree remove --force ../my-practice-project-a
 ```
 
-#### フォルダを直接削除してしまった場合
+#### ディレクトリを直接削除してしまった場合
 
-`rm -rf` でworktreeフォルダを消してしまった場合：
+`rm -rf` でworktreeディレクトリを消してしまった場合：
 
 ```bash
 git worktree prune   # 管理情報をクリーンアップ
