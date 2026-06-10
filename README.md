@@ -4,6 +4,10 @@ Claude Code の各機能を、Anthropic 公式ドキュメントと実動作の�
 
 > 各ガイドは執筆時点の公式ドキュメントを照合して書かれており、**照合日は各ガイドの冒頭**に記載しています。Claude Code の機能は更新されるため、時間に依存する記述は照合日と最新の[公式ドキュメント](https://code.claude.com/docs)を併せて確認してください。
 
+## 最新情報
+
+- **2026年6月10日** — ワークフローループ設計ガイド [Automation/WORKFLOW_LOOP_GUIDE.md](Automation/WORKFLOW_LOOP_GUIDE.md) を追加しました。`CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューを束ねた、ワークフローループ全体の設計をまとめています。
+
 ## どこから読むか
 
 - **Claude Code を使い始めたばかり / まず並列開発を試したい** → [Parallel/GUIDE.md](Parallel/GUIDE.md)（手順を一つずつ説明する、最も入門寄りのガイド）
