@@ -2,21 +2,27 @@
 
 Claude Code の各機能を、Anthropic 公式ドキュメントと実動作の検証に基づいて**日本語で解説するドキュメント集**です。並列開発・自動化・Agent Teams といったテーマごとにガイドを分けています。
 
-> 各ガイドは執筆時点の公式ドキュメントを照合して書かれています。Claude Code の機能は更新されるため、時間に依存する記述は各ガイド冒頭の**照合日**と最新の公式ドキュメントを併せて確認してください。
+> 各ガイドは執筆時点の公式ドキュメントを照合して書かれており、**照合日は各ガイドの冒頭**に記載しています。Claude Code の機能は更新されるため、時間に依存する記述は照合日と最新の[公式ドキュメント](https://code.claude.com/docs)を併せて確認してください。
+
+## どこから読むか
+
+- **Claude Code を使い始めたばかり / まず並列開発を試したい** → [Parallel/GUIDE.md](Parallel/GUIDE.md)（手順を一つずつ説明する、最も入門寄りのガイド）
+- **定期実行・自律ループで作業を自動化したい** → [Automation/GUIDE.md](Automation/GUIDE.md)（自動化3部作の入口）
+- **複数エージェントに分担させたい** → [Agent_Teams/GUIDE.md](Agent_Teams/GUIDE.md) と、同梱の `/agent-team` コマンド（下記）
 
 ## ガイド一覧
 
 ### 並列開発
 
-- **[Parallel/GUIDE.md](Parallel/GUIDE.md)** — 複数の Claude Code セッションを Git worktree で同時に走らせ、開発スピードを上げるガイド。worktree の基本操作・競合を防ぐ設計・Todo アプリの並列開発例・トラブルシューティングまでを網羅。公式の `claude --worktree` 機能も別節で解説。（最新照合: 2026年5月24日）
+- **[Parallel/GUIDE.md](Parallel/GUIDE.md)** — 複数の Claude Code セッションを Git worktree で同時に走らせ、開発スピードを上げるガイド。worktree の基本操作・競合を防ぐ設計・Todo アプリの並列開発例・トラブルシューティングまでを網羅。公式の `claude --worktree` 機能も別節で解説。
 
 ### 自動化（Routines / `/loop` / ワークフローループ）
 
 3 本セット。`GUIDE.md` が本体で、残り 2 本が特定テーマを深掘りする補助ガイドです。
 
-- **[Automation/GUIDE.md](Automation/GUIDE.md)** — **Routines**・**Desktop scheduled tasks**・**`/loop`** を実務でどう使い分けるかの本体ガイド。（最新照合: 2026年5月20日）
-- **[Automation/LOOP_GUIDE.md](Automation/LOOP_GUIDE.md)** — 引数なし `/loop` が実行する既定プロンプトを置き換える `.claude/loop.md` の書き方を、独立した実務ガイドとして掘り下げたもの。（最新照合: 2026年6月8日）
-- **[Automation/WORKFLOW_LOOP_GUIDE.md](Automation/WORKFLOW_LOOP_GUIDE.md)** — `CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューを束ねた、ワークフローループ全体の設計ガイド。（最新照合: 2026年6月9日）
+- **[Automation/GUIDE.md](Automation/GUIDE.md)** — **Routines**・**Desktop scheduled tasks**・**`/loop`** を実務でどう使い分けるかの本体ガイド。
+- **[Automation/LOOP_GUIDE.md](Automation/LOOP_GUIDE.md)** — 引数なし `/loop` が実行する既定プロンプトを置き換える `.claude/loop.md` の書き方を、独立した実務ガイドとして掘り下げたもの。
+- **[Automation/WORKFLOW_LOOP_GUIDE.md](Automation/WORKFLOW_LOOP_GUIDE.md)** — `CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューを束ねた、ワークフローループ全体の設計ガイド。
 
 ### Agent Teams
 
@@ -43,4 +49,8 @@ Claude Code の各機能を、Anthropic 公式ドキュメントと実動作の�
 
 ## 想定読者
 
-Claude Code をすでに使っていて、並列開発・自動化・マルチエージェントといった一歩進んだ使い方を取り入れたい人。
+各ガイドに共通する前提は、**Claude Code を使い始めた人**で、Git の基本操作（clone・commit・push）とターミナルに触れたことがあるレベルです（コマンドは Mac / Linux 向け）。難易度はガイドにより差があり、[Parallel/GUIDE.md](Parallel/GUIDE.md) が最も入門寄り、自動化・Agent Teams は Claude Code の基本操作に慣れていることを前提とします。
+
+## ライセンス
+
+本リポジトリのガイド・ドキュメントは [Creative Commons Attribution 4.0 International（CC BY 4.0）](https://creativecommons.org/licenses/by/4.0/) の下で公開されています。クレジット（著作者表示）と本ライセンスへのリンクを示せば、改変・再配布・商用利用を含めて自由に利用できます。詳細は [LICENSE](LICENSE) を参照してください。
