@@ -6,8 +6,7 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 
 ## 最新情報
 
-- **2026年6月11日** — Claude Fable 5 ガイドの付録Cとして、既存スキルを Fable 5 向けに診断・最適化する **`/fable5-tune` スラッシュコマンド**（[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)）を同梱しました。
-- **2026年6月11日** — Claude Fable 5 プロンプティングガイド [Prompts/CLAUDE_FABLE_5.md](Prompts/CLAUDE_FABLE_5.md) を追加しました。公式ドキュメント「Claude Fable 5 のプロンプティング」の要点と日本語訳に、移行チェックリストと Claude Code への適用レシピ（付録）を加えています。
+- **2026年6月11日** — Claude Fable 5 プロンプティングガイド [Prompts/CLAUDE_FABLE_5.md](Prompts/CLAUDE_FABLE_5.md) を追加しました。公式ドキュメント「Claude Fable 5 のプロンプティング」の要点と日本語訳に、移行チェックリスト（付録A）と Claude Code への適用レシピ（付録B）を加え、さらに付録Cとして、既存スキルを Fable 5 向けに診断・最適化する **`/fable5-tune` スラッシュコマンド**（[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)）を同梱しています。
 - **2026年6月10日** — ワークフローループ設計ガイド [Automation/WORKFLOW_LOOP_GUIDE.md](Automation/WORKFLOW_LOOP_GUIDE.md) を追加しました。`CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューを束ねた、ワークフローループ全体の設計をまとめています。
 
 ## どこから読むか
