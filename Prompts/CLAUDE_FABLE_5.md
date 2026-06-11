@@ -4,7 +4,7 @@ Claude Fable 5 は、従来のモデルでは複雑すぎたり、長時間か�
 
 能力が上がったぶん「1ターンが長くなる」「自律的に動く」といった変化が生まれ、それを御するための指示が各項目のテーマになっています。以下は、Anthropic公式ドキュメント「[Claude Fable 5 のプロンプティング](https://platform.claude.com/docs/ja/build-with-claude/prompt-engineering/prompting-claude-fable-5)」で示された、調整が最も頻繁に必要となる動作とサンプルプロンプトを、要点と日本語訳の形で順を追ってまとめたものです。
 なお、原典は Claude Fable 5 と Claude Mythos 5 の両方を対象としていますが、本ガイドは Claude Fable 5 に絞って解説します（原典照合日：2026年6月10日）。
-末尾には本ガイド独自の付録として、どのパターンから導入すべきかを整理した「付録A: 移行チェックリスト」と、各パターンを Claude Code の具体的な機能へ落とし込む「付録B: Claude Code への適用レシピ」を収録しています。
+末尾には本ガイド独自の付録として、どのパターンから導入すべきかを整理した「付録A: 移行チェックリスト」、各パターンを Claude Code の具体的な機能へ落とし込む「付録B: Claude Code への適用レシピ」、そして既存スキルの棚卸し（パターン15）を実行可能なスラッシュコマンドにした「付録C: 同梱スキル `/fable5-tune`」を収録しています。
 
 ## このガイドの使い方
 
@@ -462,6 +462,24 @@ settings.json への登録：
 - Claude Code の公式ドキュメント自身も Fable 5 の使い方として「手順ではなく結果を記述する」「検証のリマインダーは通常不要（自分で検証する頻度が高い）」と案内しており、パターン15の「従来モデル向けの細かすぎる指示は削除を検討」と同じ方向です。既存の CLAUDE.md・スキルの棚卸しは、付録Aのステップ2とあわせて行うと一度で済みます。
 - 出典: [Model configuration — Work with Fable 5](https://code.claude.com/docs/en/model-config)（照合日 2026-06-11）
 
+## 付録C: 既存スキルを棚卸しする同梱スキル `/fable5-tune`
+
+付録A・Bが「何を・どの順で」整えるかの地図だとすれば、本付録はそのうち最も手作業が重いステップ——既存スキルの棚卸し（パターン15、付録Aのステップ2）——を Claude Code 自身に実行させるためのものです。本リポジトリには、既存スキルの SKILL.md を Claude Fable 5 向けに診断・リファクタする **`/fable5-tune` スラッシュコマンド**（`.claude/skills/fable5-tune/SKILL.md`）を同梱しています。いわば、本ガイドの「実行可能な付録」です。
+
+このスキルは「能力の肩代わりは削り、本物の仕様だけ残す」を原則に、対象スキルの SKILL.md を1行（または1ブロック）単位で次の7分類にあて、「現状 → 案 ＋ 分類 ＋ 理由」の形式で書き換え案を提示し、承認を得てから適用します。
+
+1. **推論出力の指示** — `reasoning_extraction` 拒否を誘発するため除去・置換（パターン15が求める監査に対応）
+2. **能力の肩代わり** — 「段階的に考えて」のような、現行モデルが素で行う挙動の注意書きは削除
+3. **挙動の列挙** — 同じ意図の指示の羅列は、短い原則1〜2文に圧縮（パターン3・4の応用）
+4. **手順の固定** — ゴールと完了条件の記述に置換（順序自体に価値がある手順は残す）
+5. **未要求の整理・リファクタ抑制** — 冗長な抑制ブロックは、パターン2の指示程度の短文に縮約
+6. **重複** — 言い換えによる分散再掲も含めて、正となる1箇所に集約
+7. **本物の仕様** — 出力フォーマット・ガードレール・承認ゲートなど、モデル能力と無関係な要件は保持
+
+文面だけでは削除の可否が決まらない指示は、消さずに「要A/B」と分類してスキルあり／なしの比較検証を促します。「不要になった指示」と「テストが出番を作れていないだけの指示」を区別できる客観的な物差しは A/B 比較だけだ、という立場です。
+
+付録A・Bと同じく原典に対応する見出しを持たない本リポジトリ独自の追加ですが、判断基準は原典のスキャフォールディング変更（パターン15）に基づいています。
+
 ## 原典との対応
 
 本ガイドの項目は、読みやすさのために原典の見出しを分割・再構成しています。原典で該当箇所を確認する場合は次の対応を参照してください。
@@ -484,6 +502,6 @@ settings.json への登録：
 | 15 | 推奨されるスキャフォールディングの変更（Recommended scaffolding changes） |
 
 「このガイドの使い方」内の安全性分類器とフォールバックの記述は、原典冒頭の注記（Note）に対応します。
-付録A（移行チェックリスト）と付録B（Claude Code への適用レシピ）は原典に対応する見出しを持たない本ガイド独自の追加で、付録Aは本ガイドの編集上の整理、付録Bは Anthropic 公式の Claude Code ドキュメント（`code.claude.com/docs`）を出典とします。
+付録A（移行チェックリスト）・付録B（Claude Code への適用レシピ）・付録C（同梱スキル `/fable5-tune`）は原典に対応する見出しを持たない本ガイド独自の追加で、付録Aは本ガイドの編集上の整理、付録Bは Anthropic 公式の Claude Code ドキュメント（`code.claude.com/docs`）を出典とし、付録Cは本リポジトリ同梱の `.claude/skills/fable5-tune/SKILL.md` を解説するものです。
 
-*出典：本文は Anthropic公式ドキュメント「Claude Fable 5 のプロンプティング」（https://platform.claude.com/docs/ja/build-with-claude/prompt-engineering/prompting-claude-fable-5、照合日：2026年6月10日）に基づきます。付録Bは Anthropic 公式の Claude Code ドキュメント（https://code.claude.com/docs/en/memory、https://code.claude.com/docs/en/hooks、https://code.claude.com/docs/en/model-config、照合日：2026年6月11日）に基づきます。付録Aは本ガイド独自の整理です。*
+*出典：本文は Anthropic公式ドキュメント「Claude Fable 5 のプロンプティング」（https://platform.claude.com/docs/ja/build-with-claude/prompt-engineering/prompting-claude-fable-5、照合日：2026年6月10日）に基づきます。付録Bは Anthropic 公式の Claude Code ドキュメント（https://code.claude.com/docs/en/memory、https://code.claude.com/docs/en/hooks、https://code.claude.com/docs/en/model-config、照合日：2026年6月11日）に基づきます。付録Aと付録Cは本ガイド独自の追加です。*

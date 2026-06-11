@@ -6,6 +6,7 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 
 ## 最新情報
 
+- **2026年6月11日** — Claude Fable 5 ガイドの付録Cとして、既存スキルを Fable 5 向けに診断・最適化する **`/fable5-tune` スラッシュコマンド**（[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)）を同梱しました。
 - **2026年6月11日** — Claude Fable 5 プロンプティングガイド [Prompts/CLAUDE_FABLE_5.md](Prompts/CLAUDE_FABLE_5.md) を追加しました。公式ドキュメント「Claude Fable 5 のプロンプティング」の要点と日本語訳に、移行チェックリストと Claude Code への適用レシピ（付録）を加えています。
 - **2026年6月10日** — ワークフローループ設計ガイド [Automation/WORKFLOW_LOOP_GUIDE.md](Automation/WORKFLOW_LOOP_GUIDE.md) を追加しました。`CLAUDE.md`・Skills・`/loop`・`/goal`・Stop フック・レビューを束ねた、ワークフローループ全体の設計をまとめています。
 
@@ -36,7 +37,8 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 
 ### プロンプティング
 
-- **[Prompts/CLAUDE_FABLE_5.md](Prompts/CLAUDE_FABLE_5.md)** — Claude Fable 5 のプロンプティング解説・日本語訳・実践ガイド。公式ドキュメント「Claude Fable 5 のプロンプティング」が示す 14 のパターンとスキャフォールディング変更を要点と日本語訳で整理し、付録として移行チェックリストと Claude Code への適用レシピ（`CLAUDE.md` 階層・hooks・`/effort`・auto memory など）を収録。
+- **[Prompts/CLAUDE_FABLE_5.md](Prompts/CLAUDE_FABLE_5.md)** — Claude Fable 5 のプロンプティング解説・日本語訳・実践ガイド。公式ドキュメント「Claude Fable 5 のプロンプティング」が示す 14 のパターンとスキャフォールディング変更を要点と日本語訳で整理し、付録として移行チェックリスト（付録A）、Claude Code への適用レシピ（付録B：`CLAUDE.md` 階層・hooks・`/effort`・auto memory など）、下記 `/fable5-tune` スキルの解説（付録C）を収録。
+- **[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)** — 上記ガイドの付録Cにあたる、いわば「実行可能な付録」の **`/fable5-tune` スラッシュコマンド**。従来モデル向けに書かれた既存スキル（SKILL.md）を診断し、効果を失った過剰規定・能力の肩代わり・推論出力指示を分類して、Fable 5 の素の追従性能を活かす最小・原則ベースの書き換え案を提示します。
 
 ## 同梱の `/agent-team` コマンド
 
@@ -55,7 +57,8 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 ├── Prompts/CLAUDE_FABLE_5.md      # Claude Fable 5 プロンプティングガイド
 └── .claude/
     ├── commands/agent-team.md     # /agent-team コマンド本体
-    └── examples/                  # /agent-team が参照する出力例ライブラリ
+    ├── examples/                  # /agent-team が参照する出力例ライブラリ
+    └── skills/fable5-tune/        # /fable5-tune スキル（Fable 5 ガイドの付録C）
 ```
 
 ## 想定読者
