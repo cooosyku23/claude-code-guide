@@ -19,7 +19,7 @@ Claude Code の各機能（並列開発・自動化・Agent Teams など）や�
 - **`Prompts/CLAUDE_FABLE_5.md`** — Claude Fable 5 のプロンプティング解説・日本語訳・実践ガイド。公式ドキュメント「Claude Fable 5 のプロンプティング」の要点と日本語訳に、同ガイド独自の付録（移行チェックリスト、Claude Code への適用レシピ、同梱スキル `/fable5-tune` の解説）を加えたもの。
 - **`.claude/commands/agent-team.md`** — `/agent-team` スラッシュコマンドの実体（下記のメタプロンプト）。
 - **`.claude/examples/`** — `/agent-team` が参照する出力例ライブラリ。
-- **`.claude/skills/fable5-tune/SKILL.md`** — `/fable5-tune` スラッシュコマンドの実体。既存スキルの SKILL.md を Claude Fable 5 向けに診断・最適化するもので、`Prompts/CLAUDE_FABLE_5.md` の付録Cがこれを解説する（ガイドとスキルは対の関係。スキルの分類を変えたら付録Cの記述もずれていないか確認する）。
+- **`.claude/skills/fable5-tune/SKILL.md`** — `/fable5-tune` スキルの実体。既存スキルの SKILL.md を Claude Fable 5 向けに診断・最適化するもので、`Prompts/CLAUDE_FABLE_5.md` の付録Cがこれを解説する（ガイドとスキルは対の関係。スキルの分類を変えたら付録Cの記述もずれていないか確認する）。
 
 ## 把握しておくべき横断構造
 
