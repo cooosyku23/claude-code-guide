@@ -37,11 +37,11 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 ### プロンプティング
 
 - **[Prompts/CLAUDE_FABLE_5.md](Prompts/CLAUDE_FABLE_5.md)** — Claude Fable 5 のプロンプティング解説・日本語訳・実践ガイド。公式ドキュメント「Claude Fable 5 のプロンプティング」が示す 14 のパターンとスキャフォールディング変更を要点と日本語訳で整理し、付録として移行チェックリスト（付録A）、Claude Code への適用レシピ（付録B：`CLAUDE.md` 階層・hooks・`/effort`・auto memory など）、下記 `/fable5-tune` スキルの解説（付録C）を収録。
-- **[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)** — 上記ガイドの付録Cにあたる、いわば「実行可能な付録」の **`/fable5-tune` スキル**。従来モデル向けに書かれた既存スキル（SKILL.md）を診断し、効果を失った過剰規定・能力の肩代わり・推論出力指示を分類して、Fable 5 の素の追従性能を活かす最小・原則ベースの書き換え案を提示します。
 
-## 同梱の `/agent-team` コマンド
+## 同梱のスキル・スラッシュコマンド
 
-`.claude/commands/agent-team.md` は、与えたタスクから複数チームメートが協調するためのプロンプトを設計・生成する **`/agent-team` スラッシュコマンド**です。生成時に `.claude/examples/` の出力例を手本にする設計で、良い出力例を `.claude/examples/` に `.md` で追加するほど生成品質が安定します（運用方針は [`.claude/examples/README.md`](.claude/examples/README.md) を参照）。
+- **[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)** — 上記プロンプティングガイドの付録Cにあたる、いわば「実行可能な付録」の **`/fable5-tune` スキル**。従来モデル向けに書かれた既存スキル（SKILL.md）を診断し、効果を失った過剰規定・能力の肩代わり・推論出力指示を分類して、Fable 5 の素の追従性能を活かす最小・原則ベースの書き換え案を提示します。
+- **[.claude/commands/agent-team.md](.claude/commands/agent-team.md)** — 与えたタスクから複数チームメートが協調するためのプロンプトを設計・生成する **`/agent-team` スラッシュコマンド**。生成時に `.claude/examples/` の出力例を手本にする設計で、良い出力例を `.claude/examples/` に `.md` で追加するほど生成品質が安定します（運用方針は [`.claude/examples/README.md`](.claude/examples/README.md) を参照）。
 
 ## リポジトリ構成
 
