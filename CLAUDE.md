@@ -20,6 +20,7 @@ Claude Code の各機能（並列開発・自動化・Agent Teams など）や�
 - **`.claude/commands/agent-team.md`** — `/agent-team` スラッシュコマンドの実体（下記のメタプロンプト）。
 - **`.claude/examples/`** — `/agent-team` が参照する出力例ライブラリ。
 - **`.claude/skills/fable5-tune/SKILL.md`** — `/fable5-tune` スキルの実体。既存スキルの SKILL.md を Claude Fable 5 向けに診断・最適化するもので、`Prompts/CLAUDE_FABLE_5.md` の付録Cがこれを解説する（ガイドとスキルは対の関係。スキルの分類を変えたら付録Cの記述もずれていないか確認する）。
+- **`.claude/skills/fable-orchestrator/SKILL.md`** — `/fable-orchestrator` スキルの実体。Claude Fable をオーケストレーターとして使い、トークン消費の大きいリサーチ・コーディング・テストを安価なサブエージェントへ委任するためのもの。特定ガイドに属さない独立スキルで、README の「同梱のスキル・スラッシュコマンド」節から参照される（fable5-tune のようなガイドとの対の保守関係はない）。
 
 ## 把握しておくべき横断構造
 
@@ -52,4 +53,4 @@ grep -rhoE "[A-Za-z0-9_./<>-]+\.md" --include="*.md" . | sort | uniq -c | sort -
 grep -rn "references/" --include="*.md" .
 ```
 
-なお `.claude/loop.md`・`~/.claude/CLAUDE.md`・`.claude/skills/<name>/SKILL.md` のような記述は、**読者が自分の環境で作るファイルの説明**であり、このリポジトリ内に存在しなくて正常。リポジトリ内の実ファイルを指す相互参照（`Automation/*.md` など）とは区別する。ただし `.claude/skills/fable5-tune/SKILL.md` は例外で、リポジトリに同梱された実ファイル（README と `Prompts/CLAUDE_FABLE_5.md` 付録Cから参照される）。
+なお `.claude/loop.md`・`~/.claude/CLAUDE.md`・`.claude/skills/<name>/SKILL.md` のような記述は、**読者が自分の環境で作るファイルの説明**であり、このリポジトリ内に存在しなくて正常。リポジトリ内の実ファイルを指す相互参照（`Automation/*.md` など）とは区別する。ただし `.claude/skills/fable5-tune/SKILL.md` と `.claude/skills/fable-orchestrator/SKILL.md` は例外で、リポジトリに同梱された実ファイル（前者は README と `Prompts/CLAUDE_FABLE_5.md` 付録Cから、後者は README から参照される）。
