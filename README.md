@@ -6,6 +6,7 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 
 ## 最新情報
 
+- **2026年6月12日** — `/fable-orchestrator` スキル（[.claude/skills/fable-orchestrator/SKILL.md](.claude/skills/fable-orchestrator/SKILL.md)）を追加しました。
 - **2026年6月11日** — Claude Fable 5 プロンプティングガイド [Prompts/CLAUDE_FABLE_5.md](Prompts/CLAUDE_FABLE_5.md) と、その付録Cにあたる `/fable5-tune` スキル（[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)）を追加しました。
 - **2026年6月10日** — ワークフローループ設計ガイド [Automation/WORKFLOW_LOOP_GUIDE.md](Automation/WORKFLOW_LOOP_GUIDE.md) を追加しました。
 
@@ -41,6 +42,7 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 ## 同梱のスキル・スラッシュコマンド
 
 - **[.claude/skills/fable5-tune/SKILL.md](.claude/skills/fable5-tune/SKILL.md)** — 上記プロンプティングガイドの付録Cにあたる、いわば「実行可能な付録」の **`/fable5-tune` スキル**。従来モデル向けに書かれた既存スキル（SKILL.md）を診断し、効果を失った過剰規定・能力の肩代わり・推論出力指示を分類して、Fable 5 の素の追従性能を活かす最小・原則ベースの書き換え案を提示します。
+- **[.claude/skills/fable-orchestrator/SKILL.md](.claude/skills/fable-orchestrator/SKILL.md)** — Claude Fable をオーケストレーターとして使うための **`/fable-orchestrator` スキル**。トークン消費の大きいリサーチ・コーディング・テストは境界を切って安価なサブエージェントへ委任し、分解・トレードオフ判断・報告の突き合わせ・統合・最終レビューを Fable が統括します。文脈を持たないサブエージェントに渡す「委任パケット」の書き方と、報告を事実と扱わず影響度に応じて検証し直す原則を定めた、特定ガイドに属さない独立スキルです。
 - **[.claude/commands/agent-team.md](.claude/commands/agent-team.md)** — 与えたタスクから複数チームメートが協調するためのプロンプトを設計・生成する **`/agent-team` スラッシュコマンド**。生成時に `.claude/examples/` の出力例を手本にする設計で、良い出力例を `.claude/examples/` に `.md` で追加するほど生成品質が安定します（運用方針は [`.claude/examples/README.md`](.claude/examples/README.md) を参照）。
 
 ## リポジトリ構成
@@ -57,7 +59,8 @@ Claude Code の各機能を、Anthropic 公式ドキュメント（および一�
 └── .claude/
     ├── commands/agent-team.md     # /agent-team コマンド本体
     ├── examples/                  # /agent-team が参照する出力例ライブラリ
-    └── skills/fable5-tune/        # /fable5-tune スキル（Fable 5 ガイドの付録C）
+    ├── skills/fable5-tune/        # /fable5-tune スキル（Fable 5 ガイドの付録C）
+    └── skills/fable-orchestrator/ # /fable-orchestrator スキル（独立）
 ```
 
 ## 想定読者
